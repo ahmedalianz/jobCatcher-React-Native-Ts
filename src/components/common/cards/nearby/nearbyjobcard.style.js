@@ -1,0 +1,47 @@
+import {StyleSheet} from 'react-native';
+import {SIZES, SHADOWS, COLORS} from '../../../../constants';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    padding: SIZES.medium,
+    borderRadius: SIZES.small,
+    backgroundColor: '#FFF',
+    ...SHADOWS.medium,
+    shadowColor: COLORS.white,
+    marginBottom: SIZES.small,
+  },
+  logoContainer: {
+    width: 50,
+    height: 50,
+    backgroundColor: COLORS.white,
+    borderRadius: SIZES.medium,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logoImage: {
+    width: '70%',
+    height: '70%',
+  },
+  textContainer: {
+    flex: 1,
+    marginHorizontal: SIZES.medium,
+  },
+  jobName: {
+    fontSize: SIZES.medium,
+    fontFamily: 'DMSans-Bold',
+    color: COLORS.primary,
+  },
+  jobType: {
+    fontSize: SIZES.small + 2,
+    fontFamily: 'DMSans-Regular',
+    color: COLORS.gray,
+    marginTop: 3,
+    textTransform: 'capitalize',
+  },
+});
+
+export default styles;
