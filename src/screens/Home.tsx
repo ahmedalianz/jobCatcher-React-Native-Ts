@@ -17,7 +17,8 @@ const Home: FC = () => {
           <PopularJobs {...{activeJobType}} />
           <NearbyJobs {...{activeJobType}} />
         </View>
-      )}></FlatList>
+      )}
+    />
   );
 };
 export default Home;

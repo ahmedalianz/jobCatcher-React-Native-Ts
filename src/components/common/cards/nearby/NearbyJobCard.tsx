@@ -1,16 +1,13 @@
 import React, {FC} from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {JobDetails} from '../../../../types/jobDetails';
 
 import {checkImageURL} from '../../../../utils';
 
 import styles from './nearbyjobcard.style';
-interface itemProps {
-  employer_logo: string;
-  job_title: string;
-  job_employment_type: string;
-}
+
 interface NearbyJobCardProps {
-  item: itemProps;
+  item: JobDetails;
   onPress: () => void;
 }
 const NearbyJobCard: FC<NearbyJobCardProps> = ({item, onPress}) => {

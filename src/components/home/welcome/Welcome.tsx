@@ -5,16 +5,22 @@ import {
   TextInput,
   TouchableOpacity,
   FlatList,
-} from "react-native";
+} from 'react-native';
 
-import styles from "./welcome.style";
-import React, { useState } from "react";
-import { icons, SIZES } from "../../../constants";
-import { useNavigation } from "@react-navigation/native";
-const jobTypes = ["Full-Time", "Part-Time", "Contractor"];
-const Welcome = ({ activeJobType, setActiveJobType }) => {
+import styles from './welcome.style';
+import React, {useState, FC} from 'react';
+import {icons, SIZES, COLORS} from '../../../constants';
+import {useNavigation} from '@react-navigation/native';
+
+const jobTypes = ['Full-Time', 'Part-Time', 'Contractor'];
+type WelcomeScreenProps = {
+  activeJobType: 'Full-Time' | 'Part-Time' | 'Contractor';
+  setActiveJobType: Function;
+};
+
+const Welcome: FC<WelcomeScreenProps> = ({activeJobType, setActiveJobType}) => {
   const navigation = useNavigation();
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState<string>('');
   return (
     <View>
       <View style={styles.container}>
@@ -35,13 +41,12 @@ const Welcome = ({ activeJobType, setActiveJobType }) => {
           style={styles.searchBtn}
           onPress={() => {
             if (search) {
-              navigation.navigate("Search", {
+              navigation.navigate('Search', {
                 searchText: search,
                 jobType: activeJobType,
               });
             }
-          }}
-        >
+          }}>
           <Image
             source={icons.search}
             resizeMode="contain"
@@ -52,20 +57,34 @@ const Welcome = ({ activeJobType, setActiveJobType }) => {
 
       <View style={styles.tabsContainer}>
         <FlatList
-          keyExtractor={(item) => item}
+          keyExtractor={item => item}
           horizontal
           data={jobTypes}
-          renderItem={({ item }) => (
+          renderItem={({item}) => (
             <TouchableOpacity
-              style={styles.tab(activeJobType, item)}
+              style={[
+                styles.tab,
+                {
+                  borderColor:
+                    activeJobType === item ? COLORS.secondary : COLORS.gray2,
+                },
+              ]}
               onPress={() => {
                 setActiveJobType(item);
-              }}
-            >
-              <Text style={styles.tabText(activeJobType, item)}>{item}</Text>
+              }}>
+              <Text
+                style={[
+                  styles.tabText,
+                  {
+                    color:
+                      activeJobType === item ? COLORS.secondary : COLORS.gray2,
+                  },
+                ]}>
+                {item}
+              </Text>
             </TouchableOpacity>
           )}
-          contentContainerStyle={{ columnGap: SIZES.small }}
+          contentContainerStyle={{columnGap: SIZES.small}}
         />
       </View>
     </View>

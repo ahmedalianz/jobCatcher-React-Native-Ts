@@ -6,9 +6,10 @@ import {Home, JobSearch, JobDetails} from './src/screens';
 import {ScreenHeaderBtn} from './src/components';
 import {SafeAreaView} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {RootStackParamList} from './src/types/navigation';
 
 const App = () => {
-  const Stack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator<RootStackParamList>();
 
   return (
     <ProvidersWrapper>

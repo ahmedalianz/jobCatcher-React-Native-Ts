@@ -12,17 +12,13 @@ import styles from './styles/search';
 import {useFetch} from '../hooks';
 import {NearbyJobCard} from '../components';
 import {COLORS, icons, SIZES} from '../constants';
-import {RouteProp} from '@react-navigation/native';
-import {NavigatorParams} from '../types/navigation';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../types/navigation';
 
-type SearchScreenRouteProp = RouteProp<NavigatorParams, 'Search'>;
-type SearchProps = {
-  route: SearchScreenRouteProp;
-  navigation: SearchScreenRouteProp;
-};
+type SearchProps = NativeStackScreenProps<RootStackParamList, 'Search'>;
 
 const JobSearch: FC<SearchProps> = ({route, navigation}) => {
-  const {searchText, jobType}: NavigatorParams = route.params;
+  const {searchText, jobType} = route.params;
   const formattedJobType =
     jobType.charAt(0).toUpperCase() + jobType.slice(1).replace('-', ' ');
   const [page, setPage] = useState(1);

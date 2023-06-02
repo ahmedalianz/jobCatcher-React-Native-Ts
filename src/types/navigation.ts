@@ -1,7 +1,6 @@
-import { ParamListBase } from "@react-navigation/native";
 
-export type NavigatorParams =ParamListBase& {
-    [key: string]: string;
-    searchText: string;
-    jobType: string;
-  }
+export type RootStackParamList = {
+  Home: {};
+  Search: {searchText: string; jobType: string};
+  JobDetails: {job_id: string};
+};

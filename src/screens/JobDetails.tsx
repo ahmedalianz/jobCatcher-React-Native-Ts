@@ -2,7 +2,6 @@ import {View, Text, ScrollView, RefreshControl} from 'react-native';
 import React, {useState, useCallback, FC} from 'react';
 import {useFetch} from '../hooks';
 import {SIZES} from '../constants';
-import {RouteProp} from '@react-navigation/native';
 import {
   Company,
   JobAbout,
@@ -12,16 +11,16 @@ import {
   ServerDown,
   Specifics,
 } from '../components';
-import {NavigatorParams} from '../types/navigation';
-import {IData} from '../types/jobDetails';
-const tabs = ['About', 'Qualifications', 'Responsibilities'];
-type ScreenRouteProps = RouteProp<NavigatorParams, 'JobDetails'>;
-type JobDetailsProps = {
-  route: ScreenRouteProps;
-};
-const JobDetails: FC<JobDetailsProps> = ({route}) => {
-  const {job_id}: NavigatorParams = route.params;
+import {IData, JobDetails} from '../types/jobDetails';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../types/navigation';
 
+type JobDetailsProps = NativeStackScreenProps<RootStackParamList, 'JobDetails'>;
+
+const tabs = ['About', 'Qualifications', 'Responsibilities'];
+
+const JobDetails: FC<JobDetailsProps> = ({route}) => {
+  const {job_id} = route.params;
   const {data, loading, error, refetch} = useFetch('job-details', {
     job_id,
   });
